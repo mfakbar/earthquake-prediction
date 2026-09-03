@@ -28,7 +28,15 @@ The saved notebook records a cross-validation mean absolute error of **2.1413 se
 
 ![XGBoost predictions compared with actual laboratory time to failure](docs/images/predictions-vs-actual.png)
 
-*Saved notebook output: XGBoost out-of-fold predictions (blue) compared with the actual laboratory `time_to_failure` target (green) across training segments.*
+### How to read the graph
+
+- **X-axis — Training segment index:** the 4,194 feature windows in their original time order. Each window represents 150,000 original acoustic samples, reduced to 37,500 samples after downsampling.
+- **Y-axis — Time to failure:** the number of seconds remaining before the next laboratory fault failure. A value near zero means failure is imminent.
+- **Green line — Actual time to failure:** the measured target at the end of each segment. It counts down toward zero during a stick-slip cycle, then jumps upward when a new cycle begins. The plot connects these discrete segment targets with straight lines.
+- **Blue line — XGBoost prediction:** the model's out-of-fold estimate for each segment. Each point was predicted by a fold that did not train on that segment, providing a more realistic validation view than predictions on the training data itself.
+- **Distance between the lines — Prediction error:** closer overlap means a more accurate estimate. Large vertical gaps show where the model underestimates or overestimates the remaining time.
+
+The model follows the broad countdown pattern, but its predictions are noisier and do not fully capture every high value or abrupt cycle reset. The recorded **2.1413-second MAE** means the blue prediction differs from the green target by about 2.14 seconds on average across these validation segments.
 
 ## Common use cases
 
