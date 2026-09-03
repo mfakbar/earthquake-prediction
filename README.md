@@ -24,6 +24,12 @@ The notebook:
 
 The saved notebook records a cross-validation mean absolute error of **2.1413 seconds** with a standard deviation of **0.0896 seconds**. It produces 2,624 test predictions in Kaggle's `seg_id,time_to_failure` submission format. Results may vary with package versions or model changes.
 
+## Visual example
+
+![XGBoost predictions compared with actual laboratory time to failure](docs/images/predictions-vs-actual.png)
+
+*Saved notebook output: XGBoost out-of-fold predictions (blue) compared with the actual laboratory `time_to_failure` target (green) across training segments.*
+
 ## Common use cases
 
 The workflow demonstrates techniques that can be adapted to:
